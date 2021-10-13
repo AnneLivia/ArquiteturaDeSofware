@@ -1,0 +1,20 @@
+{
+  "name": "Fornecedor",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "fornecedor",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211013150301"
+}

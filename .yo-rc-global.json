@@ -1,0 +1,8 @@
+{
+  "generator-jhipster:7.3.0": {
+    "promptValues": {
+      "packageName": "org.jhipster.game",
+      "nativeLanguage": "pt-br"
+    }
+  }
+}

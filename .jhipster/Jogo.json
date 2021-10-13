@@ -1,0 +1,56 @@
+{
+  "name": "Jogo",
+  "fields": [
+    {
+      "fieldName": "nome",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ano",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "descricao",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "preco",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "estoque",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "fornecedor",
+      "otherEntityRelationshipName": "jogo",
+      "relationshipName": "fornecedor",
+      "otherEntityField": "nome"
+    },
+    {
+      "relationshipType": "many-to-many",
+      "otherEntityName": "categoria",
+      "otherEntityRelationshipName": "jogo",
+      "relationshipName": "categoria",
+      "otherEntityField": "nome",
+      "ownerSide": true
+    }
+  ],
+  "entityTableName": "jogo",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211013150300"
+}
