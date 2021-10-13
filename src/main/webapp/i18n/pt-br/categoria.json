@@ -1,0 +1,25 @@
+{
+  "gameseApp": {
+    "categoria": {
+      "home": {
+        "title": "Categorias",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Categoria",
+        "createOrEditLabel": "Criar ou editar Categoria",
+        "notFound": "Nenhum Categoria encontrado"
+      },
+      "created": "Um novo Categoria foi criado com o identificador {{ param }}",
+      "updated": "Um Categoria foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Categoria foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Categoria {{ id }}?"
+      },
+      "detail": {
+        "title": "Categoria"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "jogo": "Jogo"
+    }
+  }
+}

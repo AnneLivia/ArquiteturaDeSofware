@@ -1,0 +1,27 @@
+entity Jogo {
+	nome String,
+    ano LocalDate,
+    descricao String,
+    preco Double,
+    image String,
+    estoque Integer
+}
+
+entity Fornecedor {
+	nome String
+}
+
+entity Categoria {
+	nome String
+}
+
+
+// manytoone é 
+relationship ManyToOne {
+	Jogo{fornecedor(nome)} to Fornecedor
+}
+
+relationship ManyToMany {
+	Jogo{categoria(nome)} to Categoria{jogo(nome)}
+}
+

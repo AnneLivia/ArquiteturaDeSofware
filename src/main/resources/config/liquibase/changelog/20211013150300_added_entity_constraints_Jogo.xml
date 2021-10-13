@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+    <!--
+        Added the constraints for entity Jogo.
+    -->
+    <changeSet id="20211013150300-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="fornecedor_id"
+                                 baseTableName="jogo"
+                                 constraintName="fk_jogo__fornecedor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="fornecedor"/>
+
+        <addForeignKeyConstraint baseColumnNames="jogo_id"
+                                 baseTableName="rel_jogo__categoria"
+                                 constraintName="fk_rel_jogo__categoria__jogo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jogo"/>
+
+        <addForeignKeyConstraint baseColumnNames="categoria_id"
+                                 baseTableName="rel_jogo__categoria"
+                                 constraintName="fk_rel_jogo__categoria__categoria_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="categoria"/>
+    </changeSet>
+</databaseChangeLog>

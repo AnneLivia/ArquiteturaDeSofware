@@ -1,0 +1,91 @@
+<div>
+  <h2 id="page-heading" data-cy="JogoHeading">
+    <span jhiTranslate="gameseApp.jogo.home.title">Jogos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="gameseApp.jogo.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-jogo"
+        [routerLink]="['/jogo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="gameseApp.jogo.home.createLabel"> Create a new Jogo </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="jogos?.length === 0">
+    <span jhiTranslate="gameseApp.jogo.home.notFound">No jogos found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="jogos && jogos.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span jhiTranslate="global.field.id">ID</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.nome">Nome</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.ano">Ano</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.descricao">Descricao</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.preco">Preco</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.image">Image</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.estoque">Estoque</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.fornecedor">Fornecedor</span></th>
+          <th scope="col"><span jhiTranslate="gameseApp.jogo.categoria">Categoria</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let jogo of jogos; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/jogo', jogo.id, 'view']">{{ jogo.id }}</a>
+          </td>
+          <td>{{ jogo.nome }}</td>
+          <td>{{ jogo.ano | formatMediumDate }}</td>
+          <td>{{ jogo.descricao }}</td>
+          <td>{{ jogo.preco }}</td>
+          <td>{{ jogo.image }}</td>
+          <td>{{ jogo.estoque }}</td>
+          <td>
+            <div *ngIf="jogo.fornecedor">
+              <a [routerLink]="['/fornecedor', jogo.fornecedor?.id, 'view']">{{ jogo.fornecedor?.nome }}</a>
+            </div>
+          </td>
+          <td>
+            <span *ngFor="let categoria of jogo.categorias; let last = last">
+              <a class="form-control-static" [routerLink]="['/categoria', categoria.id, 'view']">{{ categoria.nome }}</a
+              >{{ last ? '' : ', ' }}
+            </span>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/jogo', jogo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/jogo', jogo.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(jogo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

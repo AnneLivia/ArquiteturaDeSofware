@@ -1,0 +1,105 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-jogo-heading" data-cy="JogoCreateUpdateHeading" jhiTranslate="gameseApp.jogo.home.createOrEditLabel">
+        Create or edit a Jogo
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.nome" for="field_nome">Nome</label>
+          <input type="text" class="form-control" name="nome" id="field_nome" data-cy="nome" formControlName="nome" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.ano" for="field_ano">Ano</label>
+          <div class="input-group">
+            <input
+              id="field_ano"
+              data-cy="ano"
+              type="text"
+              class="form-control"
+              name="ano"
+              ngbDatepicker
+              #anoDp="ngbDatepicker"
+              formControlName="ano"
+            />
+            <span class="input-group-append">
+              <button type="button" class="btn btn-secondary" (click)="anoDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.descricao" for="field_descricao">Descricao</label>
+          <input type="text" class="form-control" name="descricao" id="field_descricao" data-cy="descricao" formControlName="descricao" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.preco" for="field_preco">Preco</label>
+          <input type="number" class="form-control" name="preco" id="field_preco" data-cy="preco" formControlName="preco" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.image" for="field_image">Image</label>
+          <input type="text" class="form-control" name="image" id="field_image" data-cy="image" formControlName="image" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.estoque" for="field_estoque">Estoque</label>
+          <input type="number" class="form-control" name="estoque" id="field_estoque" data-cy="estoque" formControlName="estoque" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" jhiTranslate="gameseApp.jogo.fornecedor" for="field_fornecedor">Fornecedor</label>
+          <select class="form-control" id="field_fornecedor" data-cy="fornecedor" name="fornecedor" formControlName="fornecedor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                fornecedorOption.id === editForm.get('fornecedor')!.value?.id ? editForm.get('fornecedor')!.value : fornecedorOption
+              "
+              *ngFor="let fornecedorOption of fornecedorsSharedCollection; trackBy: trackFornecedorById"
+            >
+              {{ fornecedorOption.nome }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label jhiTranslate="gameseApp.jogo.categoria" for="field_categorias">Categoria</label>
+          <select class="form-control" id="field_categorias" data-cy="categoria" multiple name="categorias" formControlName="categorias">
+            <option
+              [ngValue]="getSelectedCategoria(categoriaOption, editForm.get('categorias')!.value)"
+              *ngFor="let categoriaOption of categoriasSharedCollection; trackBy: trackCategoriaById"
+            >
+              {{ categoriaOption.nome }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

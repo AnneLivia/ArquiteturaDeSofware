@@ -1,0 +1,31 @@
+{
+  "gameseApp": {
+    "jogo": {
+      "home": {
+        "title": "Jogos",
+        "refreshListLabel": "Atualizar lista",
+        "createLabel": "Criar novo Jogo",
+        "createOrEditLabel": "Criar ou editar Jogo",
+        "notFound": "Nenhum Jogo encontrado"
+      },
+      "created": "Um novo Jogo foi criado com o identificador {{ param }}",
+      "updated": "Um Jogo foi atualizado com o identificador {{ param }}",
+      "deleted": "Um Jogo foi excluído com o identificador {{ param }}",
+      "delete": {
+        "question": "Tem certeza de que deseja excluir Jogo {{ id }}?"
+      },
+      "detail": {
+        "title": "Jogo"
+      },
+      "id": "ID",
+      "nome": "Nome",
+      "ano": "Ano",
+      "descricao": "Descricao",
+      "preco": "Preco",
+      "image": "Image",
+      "estoque": "Estoque",
+      "fornecedor": "Fornecedor",
+      "categoria": "Categoria"
+    }
+  }
+}

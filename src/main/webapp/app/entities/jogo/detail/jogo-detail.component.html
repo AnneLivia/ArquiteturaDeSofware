@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="jogo">
+      <h2 data-cy="jogoDetailsHeading"><span jhiTranslate="gameseApp.jogo.detail.title">Jogo</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ jogo.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.nome">Nome</span></dt>
+        <dd>
+          <span>{{ jogo.nome }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.ano">Ano</span></dt>
+        <dd>
+          <span>{{ jogo.ano | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.descricao">Descricao</span></dt>
+        <dd>
+          <span>{{ jogo.descricao }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.preco">Preco</span></dt>
+        <dd>
+          <span>{{ jogo.preco }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.image">Image</span></dt>
+        <dd>
+          <span>{{ jogo.image }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.estoque">Estoque</span></dt>
+        <dd>
+          <span>{{ jogo.estoque }}</span>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.fornecedor">Fornecedor</span></dt>
+        <dd>
+          <div *ngIf="jogo.fornecedor">
+            <a [routerLink]="['/fornecedor', jogo.fornecedor?.id, 'view']">{{ jogo.fornecedor?.nome }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="gameseApp.jogo.categoria">Categoria</span></dt>
+        <dd>
+          <span *ngFor="let categoria of jogo.categorias; let last = last">
+            <a [routerLink]="['/categoria', categoria?.id, 'view']">{{ categoria.nome }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/jogo', jogo.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
